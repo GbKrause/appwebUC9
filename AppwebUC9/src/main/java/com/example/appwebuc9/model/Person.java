@@ -1,4 +1,4 @@
-package com.example.appwebuc9;
+package com.example.appwebuc9.model;
 
 public class Person {
 
