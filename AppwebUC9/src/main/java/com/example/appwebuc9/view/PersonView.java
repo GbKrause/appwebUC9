@@ -22,9 +22,9 @@ public class PersonView {
     public String deletePerson(@RequestParam("name") String name) {
         boolean removed = controller.removePerson(name);
         if (removed) {
-            return "Pessoa com o nome de " + name + " foi deletada";
+            return "Pessoa com o nome de " + name + " foi removida.";
         } else {
-            return "Pessoa com o nome de " + name + "não encontrada";
+            return "Pessoa com o nome de " + name + "não encontrada.";
         }
     }
 
