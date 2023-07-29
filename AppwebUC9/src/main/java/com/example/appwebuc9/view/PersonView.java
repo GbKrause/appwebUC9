@@ -1,45 +1,45 @@
 package com.example.appwebuc9.view;
 
-import com.example.appwebuc9.controller.Controller;
 import com.example.appwebuc9.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.example.appwebuc9.controller.PersonController;
 
-import javax.websocket.server.PathParam;
-import java.util.ArrayList;
 import java.util.List;
+
 @RestController
 public class PersonView {
 
     @Autowired
-    Controller controller;
+    private PersonService personService;
+
     @GetMapping("/person")
-    public Person findPerson(@PathParam("name") String name){
-        return controller.findPerson(name);
+    public Person findPerson(@RequestParam("name") String name) {
+        return personService.findPerson(name);
     }
 
     @DeleteMapping("/person")
     public String deletePerson(@RequestParam("name") String name) {
-        boolean removed = controller.removePerson(name);
+        boolean removed = personService.removePerson(name);
         if (removed) {
             return "Pessoa com o nome de " + name + " foi removida.";
         } else {
-            return "Pessoa com o nome de " + name + "não encontrada.";
+            return "Pessoa com o nome de " + name + " não encontrada.";
         }
     }
 
     @PostMapping("/person")
-    public Person addperson(@PathParam("name") String name, @PathParam("sexo") String sexo){
-        return controller.addPerson(name, sexo);
+    public Person addPerson(@RequestParam("name") String name, @RequestParam("sexo") String sexo) {
+        return personService.addPerson(name, sexo);
     }
 
-    @PutMapping("/person")
-    public Person updatePerson(@PathParam("id") int id, @PathParam("name") String name, @PathParam("sexo") String sexo){
-       return controller.editPerson(id, name, sexo);
+    @PutMapping("/person/{id}")
+    public Person updatePerson(@PathVariable("id") int id, @RequestParam("name") String name, @RequestParam("sexo") String sexo) {
+        return personService.editPerson(id, name, sexo);
     }
 
     @GetMapping("/home")
-    public String helloWorld(){
+    public String helloWorld() {
         return "Hello World";
     }
 }

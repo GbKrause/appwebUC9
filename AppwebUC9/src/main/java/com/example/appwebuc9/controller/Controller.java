@@ -1,66 +1,51 @@
 package com.example.appwebuc9.controller;
 
 import com.example.appwebuc9.model.Person;
+import com.example.appwebsenai.controller.PersonRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.websocket.server.PathParam;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class Controller {
+public class PersonController {
 
-    private List<Person> persons = new ArrayList<>();
-    private int id = 0;
+    @Autowired
+    private PersonRepository personRepository;
 
-    public Person findPerson (String name){
-        for(Person p : persons){
-            if(p.getName().equals(name)){
-                return p;
-            }
-        }
-        return null;
+    public Person findPerson(String name) {
+        return personRepository.findByName(name);
     }
 
-    public Person addPerson (String name, String sexo){
+    public Person addPerson(String name, String sexo) {
         Person person = new Person();
         person.setName(name);
         person.setSexo(sexo);
-        id++;
-        person.setId(id);
-        persons.add(person);
-        return person;
+        return personRepository.save(person);
     }
 
-    public boolean removePerson(String name){
-        Person personRemove = null;
-        for(Person p : persons){
-            if(p.getName().equals(name)){
-                personRemove = p;
-                break;
-            }
-        }
-        if(personRemove != null){
-            persons.remove(personRemove);
+    public boolean removePerson(String name) {
+        Person person = personRepository.findByName(name);
+        if (person != null) {
+            personRepository.delete(person);
             return true;
         }
         return false;
     }
 
-
     public Person editPerson(int id, String name, String sexo) {
-
-        Person personUpdate = null;
-        for (Person person : persons) {
-            if (person.getId() == id) {
-                person.setName(name);
-                person.setSexo(sexo);
-                personUpdate = person;
-                break;
-            }
+        Optional<Person> optionalPerson = personRepository.findById(id);
+        if (optionalPerson.isPresent()) {
+            Person person = optionalPerson.get();
+            person.setName(name);
+            person.setSexo(sexo);
+            return personRepository.save(person);
         }
-        return personUpdate;
+        return null;
     }
 
-
+    public List<Person> listAll() {
+        return (List<Person>) personRepository.findAll();
+    }
 }
