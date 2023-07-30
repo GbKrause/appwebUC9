@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BancoController implements ContaCorrente {
 
+
     @Autowired
     private BancoRepository bancoRepository;
 
@@ -18,6 +19,11 @@ public class BancoController implements ContaCorrente {
 
     @Override
     public Double sacar(Double quantidade, Conta conta){return null;}
+
+    @Override
+    public void deepositar(Double quantidade, Conta conta) {
+
+    }
 
     public ContaCorrentePf criarConta(String name) throws Exception {
         ContaCorrentePf contaCorrentepf = new ContaCorrentePf();
