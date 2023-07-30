@@ -9,6 +9,7 @@ public abstract class Conta {
 
     private Double saldo;
 
+
     public Long getNumeroConta() {return numeroConta;}
 
     public void setNumeroConta(Long numeroConta) { this.numeroConta = numeroConta;}
