@@ -2,20 +2,20 @@ package com.example.appwebuc9.model;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "conta")
+
+//@Entity
+//@Table(name = "conta")
 public class ContaCorrentePf {
-    @Id
-    @Column(name = "numero_conta")
+  // @Id
+   // @Column(name = "numero_conta")
     private Long numeroConta;
 
     //private Person pessoa;
 
     private Double saldo;
 
-    @OneToOne
+    //@OneToOne
     private Person person;
 
     public Person getPerson() {return person;}

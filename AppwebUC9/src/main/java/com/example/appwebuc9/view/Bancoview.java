@@ -1,5 +1,6 @@
 package com.example.appwebuc9.view;
 
+import com.example.appwebuc9.controller.BancoController;
 import com.example.appwebuc9.model.ContaCorrentePf;
 import com.example.appwebuc9.model.ContaPoupanca;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import javax.websocket.server.PathParam;
 
 @RestController
 public class Bancoview {
-    @Autowired
+    //@Autowired
     private BancoController bancoController;
     @GetMapping("/consultaSaldo")
     public Double consultaSaldo(){

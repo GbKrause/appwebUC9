@@ -1,15 +1,19 @@
 package com.example.appwebuc9.controller;
 
 
+import com.example.appwebuc9.model.Conta;
 import com.example.appwebuc9.model.ContaCorrentePf;
+import com.example.appwebuc9.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BancoController implements ContaCorrente {
 
 
-    @Autowired
+   // @Autowired
     private BancoRepository bancoRepository;
 
     @Autowired
@@ -17,8 +21,8 @@ public class BancoController implements ContaCorrente {
 
     private Long number = 0L;
 
-    @Override
-    public Double sacar(Double quantidade, Conta conta){return null;}
+   // @Override
+    //public Double sacar(Double quantidade, Conta conta){return null;}
 
     @Override
     public void deepositar(Double quantidade, Conta conta) {
@@ -28,6 +32,7 @@ public class BancoController implements ContaCorrente {
     public ContaCorrentePf criarConta(String name) throws Exception {
         ContaCorrentePf contaCorrentepf = new ContaCorrentePf();
         number++;
+        ContaCorrentePf contaCorrentePf = null;
         contaCorrentePf.setNumeroConta(number);
         Person person = controller.findPerson(name);
         if(person != null){
@@ -58,6 +63,11 @@ public class BancoController implements ContaCorrente {
     @Override
     public void transferir(Double quantidade, Conta conta){
 
+    }
+
+    @Override
+    public Double sacar(Double quantidade, Conta conta) {
+        return null;
     }
 
     @Override

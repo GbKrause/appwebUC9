@@ -1,5 +1,6 @@
 package com.example.appwebuc9.model;
 
+
 public abstract class Conta {
 
     private Long numeroConta;
@@ -10,7 +11,7 @@ public abstract class Conta {
 
     public Long getNumeroConta() {return numeroConta;}
 
-    public void setNumeroConta(Long numeroConta){This.numeroConta = numeroConta;}
+    public void setNumeroConta(Long numeroConta) { this.numeroConta = numeroConta;}
 
     /*
     public Person getPessoa(){

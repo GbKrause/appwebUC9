@@ -1,7 +1,7 @@
 package com.example.appwebuc9.controller;
 
 import com.example.appwebuc9.model.Person;
-import com.example.appwebsenai.controller.PersonRepository;
+import com.example.appwebuc9.controller.PersonRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Service
 public class Controller {
 
-    @Autowired
+    //@Autowired
     private PersonRepository personRepository;
 
     private List<Person> persons = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Controller {
         person.setName(name);
         person.setSexo(sexo);
         id++;
-        person.SetId(id);
+        person.setId(id);
         personRepository.save(person);
         return person;
     }
@@ -44,7 +44,7 @@ public class Controller {
 
     public Person editPerson(String name, String sexo) {
        Person person = findPerson(name);
-       person.SetSexo(sexo);
+       person.setSexo(sexo);
        personRepository.save(person);
        return person;
     }

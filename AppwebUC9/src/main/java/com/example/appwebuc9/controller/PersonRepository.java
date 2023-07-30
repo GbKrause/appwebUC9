@@ -1,7 +1,7 @@
-package com.example.appwebsenai.controller;
+package com.example.appwebuc9.controller;
 
-import com.example.appwebsenai.model.Person;
-import org.springframework.data.repository.CrudRepository;
+import com.example.appwebuc9.model.Person;
+
 
 public interface PersonRepository<Person> extends CrudRepository<Person, Integer> {
 
