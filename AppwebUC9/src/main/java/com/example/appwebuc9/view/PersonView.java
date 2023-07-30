@@ -3,40 +3,39 @@ package com.example.appwebuc9.view;
 import com.example.appwebuc9.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.appwebuc9.controller.PersonController;
 
-import java.util.List;
+import javax.websocket.server.PathParam;
 
 @RestController
 public class PersonView {
 
     @Autowired
-    private PersonService personService;
+    Controller controller;
 
     @GetMapping("/person")
     public Person findPerson(@RequestParam("name") String name) {
-        return personService.findPerson(name);
+        return controller.findPerson(name);
     }
 
     @DeleteMapping("/person")
-    public String deletePerson(@RequestParam("name") String name) {
-        boolean removed = personService.removePerson(name);
-        if (removed) {
-            return "Pessoa com o nome de " + name + " foi removida.";
-        } else {
-            return "Pessoa com o nome de " + name + " não encontrada.";
-        }
+    public String deletePerson(@PathParam("name") String name) {
+        controller.removePerson(name);
+
+        return "Pessoa com o nome de " + name + "foi removida.";
     }
 
     @PostMapping("/person")
-    public Person addPerson(@RequestParam("name") String name, @RequestParam("sexo") String sexo) {
-        return personService.addPerson(name, sexo);
+    public Person addPerson(@PathParam("name") String name, @PathParam("sexo") String sexo) {
+        return controller.addPerson(name, sexo);
     }
 
     @PutMapping("/person/{id}")
-    public Person updatePerson(@PathVariable("id") int id, @RequestParam("name") String name, @RequestParam("sexo") String sexo) {
-        return personService.editPerson(id, name, sexo);
+    public Person updatePerson(@PathParam("name") String name, @PathParam("sexo") String sexo) {
+        return controller.editPerson(name, sexo);
     }
+
+    @GetMapping("/all")
+    public List<Person> listAll() {return controller.listAll();}
 
     @GetMapping("/home")
     public String helloWorld() {

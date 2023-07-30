@@ -6,43 +6,47 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.ArrayList;
 
 @Service
-public class PersonController {
+public class Controller {
 
     @Autowired
     private PersonRepository personRepository;
 
-    public Person findPerson(String name) {
-        return personRepository.findByName(name);
+    private List<Person> persons = new ArrayList<>();
+    private int id = 0;
+
+    public Person findPerson(String name){
+        List<Person> persons = (List<Person>) personRepository.findAll();
+        for(Person person : persons){
+            if(person.getName().equals(name)){
+                return person;
+            }
+        }
+        return null;
     }
 
     public Person addPerson(String name, String sexo) {
         Person person = new Person();
         person.setName(name);
         person.setSexo(sexo);
-        return personRepository.save(person);
+        id++;
+        person.SetId(id);
+        personRepository.save(person);
+        return person;
     }
 
-    public boolean removePerson(String name) {
-        Person person = personRepository.findByName(name);
-        if (person != null) {
-            personRepository.delete(person);
-            return true;
-        }
-        return false;
+    public void removePerson(String name) {
+       Person person = findPerson(name);
+       personRepository.delete(person);
     }
 
-    public Person editPerson(int id, String name, String sexo) {
-        Optional<Person> optionalPerson = personRepository.findById(id);
-        if (optionalPerson.isPresent()) {
-            Person person = optionalPerson.get();
-            person.setName(name);
-            person.setSexo(sexo);
-            return personRepository.save(person);
-        }
-        return null;
+    public Person editPerson(String name, String sexo) {
+       Person person = findPerson(name);
+       person.SetSexo(sexo);
+       personRepository.save(person);
+       return person;
     }
 
     public List<Person> listAll() {

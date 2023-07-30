@@ -1,7 +1,9 @@
 package com.example.appwebuc9.model;
 
+@Entity
 public class Person {
 
+    @Id
    private Integer id;
 
     private String name;
