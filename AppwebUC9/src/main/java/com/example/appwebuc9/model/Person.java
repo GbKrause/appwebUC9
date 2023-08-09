@@ -4,7 +4,7 @@ package com.example.appwebuc9.model;
 public class Person {
 
     //@Id
-   private Integer id;
+    private Integer id;
 
     private String name;
 

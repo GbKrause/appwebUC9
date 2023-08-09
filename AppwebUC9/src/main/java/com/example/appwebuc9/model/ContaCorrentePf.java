@@ -2,6 +2,7 @@ package com.example.appwebuc9.model;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import java.beans.Transient;
 
 
 //@Entity
@@ -18,7 +19,29 @@ public class ContaCorrentePf {
     //@OneToOne
     private Person person;
 
-    public Person getPerson() {return person;}
+    //@Column(name = "type")
+    private AccountType accountType;
+
+    //@Transient utilizado para nao enviar ao BD
+    private String error;
+
+  public AccountType getAccountType() {
+    return accountType;
+  }
+
+  public void setAccountType(AccountType accountType) {
+    this.accountType = accountType;
+  }
+
+  public String getError() {
+    return error;
+  }
+
+  public void setError(String error) {
+    this.error = error;
+  }
+
+  public Person getPerson() {return person;}
 
     public void setPerson(Person person){this.person = person;}
 

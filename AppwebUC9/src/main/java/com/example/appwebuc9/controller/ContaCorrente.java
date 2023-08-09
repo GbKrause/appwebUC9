@@ -12,7 +12,7 @@ public interface ContaCorrente {
 
     void depositar(Double quantidade, Conta conta);
 
-    void transferir(Double quantidade, Conta conta);
+    String transferir(Long contaOrigem, Long contaDestino, Double valor);
 
     Double consultaSaldo(ContaCorrentePf conta);
 }
