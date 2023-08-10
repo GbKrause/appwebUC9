@@ -15,7 +15,7 @@ import javax.websocket.server.PathParam;
     @RestController
     public class Bancoview {
 
-    //@Autowired
+    @Autowired
     private BancoController bancoController;
 
     @PostMapping("/criaconta")

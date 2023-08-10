@@ -6,6 +6,7 @@ import com.example.appwebuc9.model.Conta;
 import com.example.appwebuc9.model.ContaCorrentePf;
 import com.example.appwebuc9.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -88,6 +89,14 @@ public class BancoController implements ContaCorrente {
         ContaCorrentePf destino = bancoRepository.findById(contaDestino).get();
         ContaCorrentePf origem = bancoRepository.findById(contaOrigem).get();
 
+        if(!origem.getAccountType().equals(destino.getAccountType())){
+            if (origem.getAccountType() != destino.getAccountType()){
+                if (origem.getAccountType() == AccountType.CONTA_POUPANCA || destino.getAccountType() == AccountType.CONTA_POUPANCA){
+                    valor += 10.0;
+                }
+            }
+        }
+
         if(origem.getSaldo() >= valor){
             destino.setSaldo(destino.getSaldo() + valor );
             origem.setSaldo(origem.getSaldo() - valor);
@@ -107,4 +116,15 @@ public class BancoController implements ContaCorrente {
 
     @Override
     public Double consultaSaldo(ContaCorrentePf conta) { return conta.getSaldo();}
+
+    public void calcularJurosPoupanca() {
+        List<ContaCorrentePf> contasPoupanca = bancoRepository.findByAccountType(AccountType.CONTA_POUPANCA);
+        for (ContaCorrentePf conta : contasPoupanca){
+            Double saldoAtual = conta.getSaldo();
+            Double jurosDiarios = saldoAtual * 0.001;
+            conta.setSaldo( saldoAtual + jurosDiarios);
+            bancoRepository.save(conta);
+        }
+    }
 }
+

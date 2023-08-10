@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/appwebUC9.iml" filepath="$PROJECT_DIR$/.idea/appwebUC9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AppwebUC9/AppwebUC9.iml" filepath="$PROJECT_DIR$/AppwebUC9/AppwebUC9.iml" />
     </modules>
   </component>
 </project>
