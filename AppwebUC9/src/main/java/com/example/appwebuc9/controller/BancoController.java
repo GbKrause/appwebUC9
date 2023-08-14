@@ -8,6 +8,7 @@ import com.example.appwebuc9.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import java.util.Date;
 
 import java.util.List;
 
@@ -72,7 +73,16 @@ public class BancoController implements ContaCorrente {
 
         for(ContaCorrentePf cc : contas){
             if(cc.getPerson() != null && cc.getPerson().getName().equals(name)){
-                return cc;
+
+                if(cc.getDataAtualizacao().equals(new Date())){
+                    return cc;
+                }else{
+                    cc.setDataAtualizacao( new Date());
+                    cc.setSaldo(cc.getSaldo() * 1.001);
+                    bancoRepository.save(cc);
+
+                }
+
             }
         }
         return null;

@@ -1,7 +1,7 @@
 package com.example.appwebuc9.model;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-
+import java.util.Date;
 import java.beans.Transient;
 
 
@@ -22,8 +22,19 @@ public class ContaCorrentePf {
     //@Column(name = "type")
     private AccountType accountType;
 
+    //@Column
+    private Date dataAtualizacao;
+
     //@Transient utilizado para nao enviar ao BD
     private String error;
+
+    public Date getDataAtualizacao(){
+      return dataAtualizacao;
+    }
+
+    public void setDataAtualizacao(Date dataAtualizacao){
+      this.dataAtualizacao = dataAtualizacao;
+    }
 
   public AccountType getAccountType() {
     return accountType;
