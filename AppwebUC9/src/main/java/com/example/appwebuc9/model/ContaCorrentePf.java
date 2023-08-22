@@ -1,6 +1,8 @@
 package com.example.appwebuc9.model;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.JoinColumn;
 import java.util.Date;
 import java.beans.Transient;
 
@@ -17,6 +19,7 @@ public class ContaCorrentePf {
     private Double saldo;
 
     //@OneToOne
+    @JoinColumn(name = "person_id")
     private Person person;
 
     //@Column(name = "type")

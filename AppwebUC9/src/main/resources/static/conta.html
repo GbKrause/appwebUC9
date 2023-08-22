@@ -7,8 +7,34 @@
 <body>
 <a href="index.html">Cadastro de pessoa</a>
 <a href="conta.html">Cadastro de conta corrente</a>
+<a href="gerencia_conta.html">Gerencia conta</a>
+<a href="contato.html">Contatos</a>
 <br>
-Gerencia sua conta
+<br>
+<div>
+    <label for="numero_conta">Numero Conta</label>
+    <input id="numero_conta" type="text" readonly><br><br>
+    <label for="saldo">Saldo</label>
+    <input id="saldo" type="text" readonly>
+    <br>
+    <br>
+    <label for="tipo_conta">Selecione o tipo da conta</label>
+    <br>
+    <select id="tipo_conta">
+        <option value="corrente">Conta corrente</option>
+        <option value="poupanca">Conta poupança</option>
+    </select>
+    <br>
+    <br>
+    <label for="pessoa">Selecione uma pessoa</label>
+    <br>
+    <select id="pessoa">
+    </select>
+    <br>
+    <br>
+    <button type="button">Cadastrar Conta</button>
+</div>
 
+<script src="conta.js"></script>
 </body>
 </html>
