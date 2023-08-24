@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manutenção de Conta</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div>
+    <a href="index.html">Início</a> || <a href="account.html">Conta</a>
+</div>
+
+<div>
+    <h1>Manutenção de Conta</h1>
+
+    <div>
+        <label for="numeroConta">Número da Conta:</label>
+        <input type="text" id="numeroConta" value="123456" readonly>
+    </div>
+
+    <div>
+        <label for="saldo">Saldo:</label>
+        <input type="text" id="saldo" value="1000.00" readonly>
+    </div>
+
+    <div>
+        <label for="tipoConta">Tipo da Conta:</label>
+        <select id="tipoConta">
+            <option value="corrente">Corrente</option>
+            <option value="poupanca">Poupança</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="erroServidor">Erro do Servidor:</label>
+        <textarea id="erroServidor" rows="3" readonly></textarea>
+    </div>
+
+    <button type="submit">Salvar</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
