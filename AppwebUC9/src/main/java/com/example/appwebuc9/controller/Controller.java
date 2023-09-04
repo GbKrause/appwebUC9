@@ -5,6 +5,7 @@ import com.example.appwebuc9.controller.PersonRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.lang.invoke.StringConcatException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -27,13 +28,13 @@ public class Controller {
         return null;
     }
 
-    public Person addPerson(String name, String sexo) {
+    public Person addPerson(String name, String sexo){
         Person person = new Person();
         person.setName(name);
         person.setSexo(sexo);
         id++;
         person.setId(id);
-        personRepository.save(person);
+        //personRepository.save(person);
         return person;
     }
 
